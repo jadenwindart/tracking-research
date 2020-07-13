@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from tracking.views import DataCollector
+from tracking.Hello_World import HelloWorld
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('collector', DataCollector.as_view(),name="data-collector-view")
+    path('collector', DataCollector.as_view(),name="data-collector-view"),
+    path('', HelloWorld.as_view(),name="Hello-World")
 ]
