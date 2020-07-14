@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tracking.views import DataCollector
 from tracking.Hello_World import HelloWorld
+from tracking.Collector_view import DataCollector
 
 urlpatterns = [
     path('admin/', admin.site.urls),
