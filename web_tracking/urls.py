@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tracking.Hello_World import HelloWorld
+from tracking.retrieve_data import RetrieveData
 from tracking.Collector_view import DataCollector
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('collector', DataCollector.as_view(),name="data-collector-view"),
-    path('', HelloWorld.as_view(),name="Hello-World")
+    path('', RetrieveData.as_view(),name="Retrieve-Data")
 ]

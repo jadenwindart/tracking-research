@@ -6,8 +6,9 @@ from .firebase_adapter import Firebase
 
 # Create your views here.
 
-class HelloWorld(APIView):
+class RetrieveData(APIView):
 
     def get(self,request):
-        data = request.data
-        return Response(data="hello world"+data["input"],status=status.HTTP_200_OK)
+        firebase = Firebase()
+        data = firebase.get_data()
+        return Response(data=data,status=status.HTTP_200_OK)

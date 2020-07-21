@@ -20,3 +20,7 @@ class Firebase:
             } for x in recv_data["cells"]]
         }
         self.db.child("data").push(data)
+        
+    def get_data(self):
+        data = self.db.child("data").get()
+        return data.val()
