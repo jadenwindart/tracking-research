@@ -24,3 +24,7 @@ class Firebase:
     def get_data(self):
         data = self.db.child("data").get()
         return data.val()
+        
+    def print_data(self):
+        data = self.db.child("data").order_by_key().limit_to_first(10).get()
+        return data.val()

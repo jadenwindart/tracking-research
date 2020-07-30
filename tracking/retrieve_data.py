@@ -12,3 +12,11 @@ class RetrieveData(APIView):
         firebase = Firebase()
         data = firebase.get_data()
         return Response(data=data,status=status.HTTP_200_OK)
+
+
+class PrintData(APIView):
+          
+    def get(self,request):
+        firebase = Firebase()
+        data1 = firebase.print_data()
+        return Response(data=data1,status=status.HTTP_200_OK)

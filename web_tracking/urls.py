@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from tracking.retrieve_data import RetrieveData
+from tracking.retrieve_data import PrintData
 from tracking.Collector_view import DataCollector
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('collector', DataCollector.as_view(),name="data-collector-view"),
-    path('', RetrieveData.as_view(),name="Retrieve-Data")
+    path('', RetrieveData.as_view(),name="Retrieve-Data"),
+    path('list', PrintData.as_view(),name="Print-Data")
 ]
