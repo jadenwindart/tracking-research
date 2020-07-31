@@ -27,6 +27,26 @@ class Firebase:
         data = self.db.child("data").get()
         return data.val()
         
-    def print_data(self):
-        data = self.db.child("data").order_by_key().limit_to_first(10).get()
-        return data.val()
+    def paginate_data(self,data_index,number_retrieve):
+        if(data_index != None):
+            query = self.db.child("data").order_by_key().start_at(data_index).limit_to_first(number_retrieve).get()
+        else:
+            query = self.db.child("data").order_by_key().limit_to_first(number_retrieve).get()
+        records = query.val()
+        data = []
+        for record in records:
+            data.append({
+                "record_id" : record,
+                "user_id" : records[record]['user_id'],
+                "mnc" : records[record]['mnc'],
+                "mcc" : records[record]['mcc'],
+                "radio" : records[record]['radio'],
+                "timestamp" : records[record]['timestamp'],
+                "cells": [{
+                    "cellid" : x["cellid"],
+                    "rss" : x["rss"]
+                } for x in records[record]["cells"]],
+                "lat" : records[record]["lat"],
+                "lon" : records[record]["lon"]
+            })
+        return data

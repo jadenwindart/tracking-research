@@ -14,9 +14,20 @@ class RetrieveData(APIView):
         return Response(data=data,status=status.HTTP_200_OK)
 
 
-class PrintData(APIView):
+class PaginateData(APIView):
           
     def get(self,request):
+        req_data = request.data
+        req_data_index = req_data["start_index"] if req_data["start_index"] != None else None
+        req_data_size = req_data["size"] if req_data["size"] != None else 10
         firebase = Firebase()
-        data1 = firebase.print_data()
-        return Response(data=data1,status=status.HTTP_200_OK)
+        data = firebase.paginate_data(req_data_index,req_data_size)
+        resp_data = {
+            "meta":{
+                "start_index" : req_data_index,
+                "size" : req_data_size,
+                "last_record" : True if len(data) < req_data_size else False
+            },
+            "data" : data
+        }
+        return Response(data=resp_data,status=status.HTTP_200_OK)
