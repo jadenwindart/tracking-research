@@ -17,7 +17,9 @@ class Firebase:
             "cells": [{
                 "cellid" : x["cell_id"],
                 "rss" : x["rss"]
-            } for x in recv_data["cells"]]
+            } for x in recv_data["cells"]],
+            "lat" : recv_data["lat"],
+            "lon" : recv_data["lon"]
         }
         self.db.child("data").push(data)
         
