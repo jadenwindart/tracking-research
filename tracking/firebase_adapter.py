@@ -51,8 +51,8 @@ class Firebase:
                 "cells": [{
                     "cellid" : x["cellid"],
                     "rss" : x["rss"]
-                } for x in records[record]["cells"]]
-                # "lat" : records[record]["lat"],
-                # "lon" : records[record]["lon"]
+                } for x in records[record]["cells"]],
+                "lat" : records[record]["lat"],
+                "lon" : records[record]["lon"]
             })
         return data
